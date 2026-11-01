@@ -6,7 +6,7 @@ def chunk_text(text: str, size: int, overlap: int) -> list[str]:
     """
     if size == 0 or size < 0 or overlap >= size or overlap < 0:
         raise ValueError(
-            f"invalid value: (size must not be zero or negative) size:{size},(overlap must be less than size and greater than zero) overlap:{overlap} "
+            f"invalid value: (size must not be zero or negative) size:{size},(overlap must be less than size and not be negative ) overlap:{overlap} "
         )
     step = size - overlap
     chunks = []
