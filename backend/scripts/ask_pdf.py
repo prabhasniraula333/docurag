@@ -11,14 +11,16 @@ def main() -> None:
     records = build_records(path)
 
     while True:
-        inputs = input("Enter a relevant question:")
+        inputs = input("\nEnter a relevant question:")
         if not inputs.strip():
             break
         results = search(inputs, records, 5)
         for rank, result in enumerate(results, start=1):
+            print()
             print(
                 f"rank:{rank} , page: {result['page']} , score: {result['score']:.2f} , text: {result['text'].replace('\n', ' ')}"
             )
+            print("-" * 60)
 
 
 if __name__ == "__main__":
