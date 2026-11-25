@@ -2,7 +2,18 @@ import pytest
 from pypdf import PdfWriter
 
 from app.rag.embed import embed_texts
-from app.rag.pipeline import build_records, search
+from app.rag.pipeline import (
+    DEFAULT_CHUNK_SIZE,
+    DEFAULT_OVERLAP,
+    build_records,
+    chunk_text,
+    search,
+)
+
+
+def test_default_chunk_settings_are_valid():
+    chunks = chunk_text("word " * 1000, DEFAULT_CHUNK_SIZE, DEFAULT_OVERLAP)
+    assert len(chunks) > 1
 
 
 def make_blank_pdf(path, num_pages):

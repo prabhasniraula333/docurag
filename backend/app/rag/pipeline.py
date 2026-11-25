@@ -3,8 +3,13 @@ from app.rag.embed import embed_texts
 from app.rag.extract import extract_pages
 from app.rag.retrieve import retrieve
 
+DEFAULT_CHUNK_SIZE = 800
+DEFAULT_OVERLAP = 150
 
-def build_records(path: str, size: int = 500, overlap: int = 100) -> list[dict]:
+
+def build_records(
+    path: str, size: int = DEFAULT_CHUNK_SIZE, overlap: int = DEFAULT_OVERLAP
+) -> list[dict]:
     """Read a PDF and return one record per chunk: page, text and vector."""
     records = []
     for page_number, page_text in extract_pages(path):

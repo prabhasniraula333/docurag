@@ -1,7 +1,7 @@
 import argparse
 
 from app.rag.extract import extract_pages
-from app.rag.pipeline import build_records, search
+from app.rag.pipeline import DEFAULT_CHUNK_SIZE, DEFAULT_OVERLAP, build_records, search
 from scripts.eval_set import EVAL_SET, OFF_TOPIC
 
 TOP_K = 5
@@ -99,10 +99,13 @@ def main() -> None:
     )
     parser.add_argument("pdf", help="path to the pdf")
     parser.add_argument(
-        "--size", type=int, default=500, help="chunk size in characters"
+        "--size", type=int, default=DEFAULT_CHUNK_SIZE, help="chunk size in characters"
     )
     parser.add_argument(
-        "--overlap", type=int, default=100, help="chunk overlap in characters"
+        "--overlap",
+        type=int,
+        default=DEFAULT_OVERLAP,
+        help="chunk overlap in characters",
     )
     parser.add_argument(
         "--check", action="store_true", help="only validate the question set"
